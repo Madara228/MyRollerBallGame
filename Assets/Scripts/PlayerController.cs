@@ -11,16 +11,18 @@ public class PlayerController : MonoBehaviour {
 //<Private vars>
     private Rigidbody rb;
     [SerializeField]
-    private float speed = 100f;
+    private GameObject[] gameObjects;
+    Vector3 pos;
+    //</Private vars>
 
-//</Private vars>
-
-//<Public vars>
+    //<Public vars>
+    public float speed = 20F;
     public Vector3 center;
     public Vector3 size;
     public GameObject plane;
     public Button btn;
-    public GameObject[] gameObjects;
+    public Button btn_teleport;
+
 
 //</Public vars>
 
@@ -29,13 +31,15 @@ public class PlayerController : MonoBehaviour {
         btn = btn.GetComponent<Button>();
 		rb = GetComponent<Rigidbody>();
         btn.onClick.AddListener(onClick);
+        btn_teleport = btn_teleport.GetComponent<Button>();
+        btn_teleport.onClick.AddListener(TeleportPlayer);
 	}
 	
 	void Update () {
         float x = CrossPlatformInputManager.GetAxis("Horizontal")/**speed*/;
         float y = CrossPlatformInputManager.GetAxis("Vertical")/**speed*/;
         rb.AddForce(new Vector3(x, 0, y)*speed);
-
+        //transform.rotation = Quaternion.identity;
         if(x!=0 && y != 0) 
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Atan2(x, y) * Mathf.Rad2Deg, transform.eulerAngles.z);
@@ -58,7 +62,7 @@ public class PlayerController : MonoBehaviour {
     }
     void onClick()
     {
-        Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), size.y, Random.Range(-size.z / 2, size.z / 2));
+        pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), size.y, Random.Range(-size.z / 2, size.z / 2));
         Instantiate(plane, pos, Quaternion.identity);
         DestrouPlanes();
         
@@ -67,6 +71,11 @@ public class PlayerController : MonoBehaviour {
         //    Destroy(gameObject[i])
         //}
         //print(" ");
+    }
+
+    void TeleportPlayer()
+    {
+        transform.position = pos;
     }
 
 }
