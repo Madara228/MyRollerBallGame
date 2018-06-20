@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - TeleportPlane
+  - Enemy
+  - Health
+  - wave_1_bomb
   layers:
   - Default
   - TransparentFX
