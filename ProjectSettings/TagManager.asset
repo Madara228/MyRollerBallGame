@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Health
   - wave_1_bomb
+  - wave_2_bomb
   layers:
   - Default
   - TransparentFX

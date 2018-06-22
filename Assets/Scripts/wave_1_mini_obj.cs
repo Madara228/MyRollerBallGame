@@ -6,14 +6,17 @@ public class wave_1_mini_obj : MonoBehaviour {
 
     public GameObject player;
     Vector3 player_pos;
-
+    private Rigidbody myRb;
+    private float speed = 120f;
 	void Start () {
+        myRb = GetComponent<Rigidbody>();
+
         player = GameObject.FindGameObjectWithTag("Player");
         transform.LookAt(player.transform.position);
-        player_pos = player.transform.position;
+        //player_pos = player.transform.position;
     }
 
     void Update () {
-        transform.position = Vector3.MoveTowards(transform.position,player_pos,0.5f);
+        myRb.velocity = transform.forward * speed;
     }
 }

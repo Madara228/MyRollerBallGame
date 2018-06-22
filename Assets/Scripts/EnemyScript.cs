@@ -9,11 +9,12 @@ public class EnemyScript : MonoBehaviour {
     public bool canTeleport = true;
     float mSpeed;
     [SerializeField]
-    public Transform player;
+    public GameObject player;
     void Start () {
         //step = playerController.speed - Random.Range(2f,5f);
         mSpeed = playerController.speed - Random.Range(10, 20);
         StartCoroutine(teleporterEnem());
+        player = GameObject.FindGameObjectWithTag("Player");
         //canTeleport = false;
     }
 
@@ -25,7 +26,7 @@ public class EnemyScript : MonoBehaviour {
         //}
        // Debug.Log(canTeleport);
         step = mSpeed * Time.deltaTime/4;
-        transform.position = Vector3.MoveTowards(transform.position, player.position, step);
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
 	}
 
     private IEnumerator teleporterEnem()

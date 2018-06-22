@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour {
     public GameObject plane;
     public Button btn;
     public Button btn_teleport;
-    public
+    public float adder = 1;
+    public bool isCreated = false;
 
 //</Public vars>
 
@@ -45,8 +46,8 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void Update () {
-        float x = CrossPlatformInputManager.GetAxis("Horizontal") * speed;
-        float y = CrossPlatformInputManager.GetAxis("Vertical") * speed;
+        float x = CrossPlatformInputManager.GetAxis("Horizontal") * speed*adder ;
+        float y = CrossPlatformInputManager.GetAxis("Vertical") * speed*adder;
        // rotation = x*1f*Time.deltaTime;
         rb.AddForce(new Vector3(x, 0, y));
         //transform.rotation = Quaternion.identity;
@@ -97,6 +98,13 @@ public class PlayerController : MonoBehaviour {
         if (collision.gameObject.tag == "Enemy"){
             health -= 1;
             remakeText();
+            collision.transform.position = new Vector3(collision.transform.position.x-10f, collision.transform.position.y, collision.transform.position.z - 10f);
+            int a = 0;
+            a = Random.Range(1, 5);
+            if (a == 1)
+            {
+                StartCoroutine(korni());
+            }
         }
         if(collision.gameObject.tag == "wave_1_bomb")
         {
@@ -104,6 +112,16 @@ public class PlayerController : MonoBehaviour {
             remakeText();
         }
         
+        if (collision.gameObject.tag == "wave_2_bomb")
+        {
+            health -= 5;
+            Destroy(collision.gameObject);
+            remakeText();
+
+        }
+
+
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -117,16 +135,17 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    void remakeText()
+    public void remakeText()
     {
         healthText.text = health.ToString();
         if (health < 1)
         {
             StartCoroutine(loshara());
         }
-        if (health >=20)
+        if (health >=20 && isCreated == false)
         {
             StartCoroutine(youNotLoshara());
+            isCreated = true;
         }
     }
 
@@ -154,4 +173,13 @@ public class PlayerController : MonoBehaviour {
         Instantiate(boss_obj, pos, Quaternion.identity);
     }
 
+
+    private IEnumerator korni()
+    {
+        float k = 0;
+        k = speed;
+        speed = 0;
+        yield return new WaitForSeconds(3f);
+        speed = k;
+    }
 }

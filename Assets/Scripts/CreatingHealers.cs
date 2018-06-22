@@ -5,11 +5,13 @@ using UnityEngine;
 public class CreatingHealers : MonoBehaviour {
 
     public GameObject heathPref;
+    public GameObject speedPref;
     public int k = 0;
     public PlayerController playerController;
+    public GameObject speed_boost;
 	void Start () {
-        create();
-        create();
+        create(heathPref);
+        create(heathPref);
         StartCoroutine(instantiatorPrefs());
 	}
 
@@ -21,16 +23,22 @@ public class CreatingHealers : MonoBehaviour {
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    create();
+                    int a = 0;
+                    a = Random.Range(1, 5);
+                    if(a == 4)
+                    {
+                        create(speedPref); 
+                    }
+                    create(heathPref);
                 }
             }
             yield return new WaitForSeconds(5);
         }
     }
-    void create()
+    void create(GameObject d)
     {
         Vector3 pos = playerController.center + new Vector3(Random.Range(-playerController.size.x / 2, playerController.size.x / 2), playerController.size.y, Random.Range(-playerController.size.z / 2, playerController.size.z / 2));
-        Instantiate(heathPref, pos, transform.rotation);
+        Instantiate(d, pos, transform.rotation);
         k++;
     }
 	
