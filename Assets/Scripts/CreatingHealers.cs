@@ -8,7 +8,6 @@ public class CreatingHealers : MonoBehaviour {
     public GameObject speedPref;
     public int k = 0;
     public PlayerController playerController;
-    public GameObject speed_boost;
 	void Start () {
         create(heathPref);
         create(heathPref);

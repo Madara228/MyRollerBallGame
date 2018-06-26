@@ -15,17 +15,17 @@ public class Booster : MonoBehaviour {
     {
         if(other.gameObject.tag == "Player")
         {
-            StartCoroutine(adder());
             Destroy(this.gameObject);
             Debug.Log("work!");
+            StartCoroutine(adder_speed());
         }
     }
 
-    private IEnumerator adder()
+    IEnumerator adder_speed()
     {
-        playerController.adder *=2;
-        yield return new WaitForSeconds(10f);
-        playerController.adder = 1;
-        print("hey");
+        playerController.adder += 0.5f;
+        yield return new WaitForSeconds(5f);
+       // playerController.adder = 1;
+        Debug.Log("hey");
     }
 }

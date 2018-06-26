@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     //</Private vars>
 
     //<Public vars>
-    public int health = 10;
+    public float health = 10f;
     public Text healthText;
     public float speed = 20F;
     public CreatingHealers creatingHealers;
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour {
     public Vector3 size;
     public GameObject plane;
     public Button btn;
+    public bool canStopped = true;
     public Button btn_teleport;
     public float adder = 1;
     public bool isCreated = false;
@@ -96,21 +97,17 @@ public class PlayerController : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy"){
-            health -= 1;
+            health -= 1f;
             remakeText();
             collision.transform.position = new Vector3(collision.transform.position.x-10f, collision.transform.position.y, collision.transform.position.z - 10f);
             int a = 0;
             a = Random.Range(1, 5);
-            if (a == 1)
+            if (a == 1 && canStopped == true)
             {
                 StartCoroutine(korni());
             }
         }
-        if(collision.gameObject.tag == "wave_1_bomb")
-        {
-            health -= 2;
-            remakeText();
-        }
+        
         
         if (collision.gameObject.tag == "wave_2_bomb")
         {
@@ -127,22 +124,28 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Health")
         {
-            health += 1;
+            health += Random.Range(1f,4f);
             creatingHealers.k -= 1;
             Destroy(other.gameObject);
             remakeText();
            
         }
+        if (other.gameObject.tag == "wave_1_bomb")
+        {
+            health -= 0.5f;
+            Destroy(other);
+            remakeText();
+        }
     }
 
     public void remakeText()
     {
-        healthText.text = health.ToString();
-        if (health < 1)
+        healthText.text = health.ToString();    
+        if (health < 1f)
         {
             StartCoroutine(loshara());
         }
-        if (health >=20 && isCreated == false)
+        if (health >=20f && isCreated == false)
         {
             StartCoroutine(youNotLoshara());
             isCreated = true;
@@ -164,13 +167,16 @@ public class PlayerController : MonoBehaviour {
     }
     void createBoss()
     {
-        GameObject[] gameObjects_enemy = GameObject.FindGameObjectsWithTag("Enemy");
-        for(int i =0; i<gameObjects_enemy.Length; i++)
-        {
-            Destroy(gameObjects_enemy[i]);
-        }
-        Vector3 pos = new Vector3(-8, 10, 13);
-        Instantiate(boss_obj, pos, Quaternion.identity);
+
+        SceneManager.LoadScene("BossScene");
+
+        //GameObject[] gameObjects_enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        //for(int i =0; i<gameObjects_enemy.Length; i++)
+        //{
+        //    Destroy(gameObjects_enemy[i]);
+        //}
+        //Vector3 pos = new Vector3(-8, 10, 13);
+        //Instantiate(boss_obj, pos, Quaternion.identity);
     }
 
 
@@ -178,8 +184,11 @@ public class PlayerController : MonoBehaviour {
     {
         float k = 0;
         k = speed;
+        canStopped = false;
         speed = 0;
         yield return new WaitForSeconds(3f);
         speed = k;
+        canStopped = true;
+        Debug.Log(canStopped);
     }
 }
