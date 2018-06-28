@@ -6,7 +6,7 @@ public class EnemyScript : MonoBehaviour {
     [SerializeField]
     PlayerController playerController;
     float step;
-    public bool canTeleport = true;
+    //public bool canTeleport = true;
     float mSpeed;
     [SerializeField]
     public GameObject player;
@@ -25,7 +25,7 @@ public class EnemyScript : MonoBehaviour {
         //    canTeleport = false;
         //}
        // Debug.Log(canTeleport);
-        step = mSpeed * Time.deltaTime/4;
+        step = mSpeed * Time.deltaTime/3;
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
 	}
 
