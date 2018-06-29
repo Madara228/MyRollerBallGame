@@ -34,7 +34,7 @@ public class BossScript : MonoBehaviour {
     {
         for(int i = 0; i < 10; i++)
         {
-            Instantiate(wave_1_mini_objs,transform.position + new Vector3(i * i*i, transform.position.y, i * i), Quaternion.identity);
+            Instantiate(wave_1_mini_objs,transform.position + new Vector3(i * i*i, player.transform.position.y, i * i), Quaternion.identity);
         }
         StartCoroutine(delete("wave_1_bomb"));
         //StartCoroutine(wave_2());
@@ -51,7 +51,7 @@ public class BossScript : MonoBehaviour {
                 90, Random.Range(-playerController.size.z / 2, playerController.size.z / 2));
             Instantiate(wave_2_bombs, pos,Quaternion.identity);
         }
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         StartCoroutine(delete("wave_2_bomb"));
 
     }
@@ -60,7 +60,7 @@ public class BossScript : MonoBehaviour {
 
     private IEnumerator delete(string a)
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(5f);
         GameObject[] objs = GameObject.FindGameObjectsWithTag(a);
         for (int i = 0; i < objs.Length; i++)
         {
@@ -74,7 +74,7 @@ public class BossScript : MonoBehaviour {
         int a = 0;
         while (true)
         {
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(3f);
 
             a = Random.Range(1, 4);
             if (a == 1)
@@ -94,7 +94,7 @@ public class BossScript : MonoBehaviour {
         if(collision.gameObject.tag == "Player") {
             playerController.health -= 1;
             playerController.remakeText();
-            boss_health -= 5;
+            boss_health -= Random.Range(1,3);
             Teleport();
             RemakeBossHealth();
         }

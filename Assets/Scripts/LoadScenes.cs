@@ -25,11 +25,11 @@ public class LoadScenes : MonoBehaviour {
     {
         if (yFactor == 1920 && xFactor == 1080 || yFactor == 1080 && xFactor == 1920)
         {
-            SceneManager.LoadScene("");
+            SceneManager.LoadScene("MainScene");
         }
         else if(yFactor == 1280 && xFactor == 720 || yFactor == 720 && xFactor == 1280)
         {
-            SceneManager.LoadScene("BossScene");
+            SceneManager.LoadScene("MainScene_720p");
         }
     }
 }

@@ -7,7 +7,7 @@ public class wave_1_mini_obj : MonoBehaviour {
     public GameObject player;
     Vector3 player_pos;
     private Rigidbody myRb;
-    private float speed = 120f;
+    private float speed = 70f;
 	void Start () {
         myRb = GetComponent<Rigidbody>();
 

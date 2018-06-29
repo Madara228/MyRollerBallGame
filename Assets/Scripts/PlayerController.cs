@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Health")
         {
-            health += Random.Range(1f,4f);
+            health += Random.Range(1f,2f);
             creatingHealers.k -= 1;
             Destroy(other.gameObject);
             remakeText();
@@ -162,7 +162,16 @@ public class PlayerController : MonoBehaviour {
     {
         losharaText.text = "Лошара!";
         yield return new WaitForSeconds(5);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        if (yFactor == 1920 && xFactor == 1080 || yFactor == 1080 && xFactor == 1920)
+        {
+            SceneManager.LoadScene("MainScene");
+        }
+        else if (yFactor == 1280 && xFactor == 720 || yFactor == 720 && xFactor == 1280)
+        {
+            SceneManager.LoadScene("MainScene_720p");
+        }
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     private IEnumerator youNotLoshara()
     {
@@ -176,21 +185,12 @@ public class PlayerController : MonoBehaviour {
     {
         if (yFactor == 1920 && xFactor == 1080 || yFactor == 1080 && xFactor == 1920)
         {
-            SceneManager.LoadScene("BossScene");
+            SceneManager.LoadScene("BossScene_1080p");
         }
         else if (yFactor == 1280 && xFactor == 720 || yFactor == 720 && xFactor == 1280)
         {
-            SceneManager.LoadScene("MainScene_720p");
+            SceneManager.LoadScene("BossScene");
         }
-        
-
-        //GameObject[] gameObjects_enemy = GameObject.FindGameObjectsWithTag("Enemy");
-        //for(int i =0; i<gameObjects_enemy.Length; i++)
-        //{
-        //    Destroy(gameObjects_enemy[i]);
-        //}
-        //Vector3 pos = new Vector3(-8, 10, 13);
-        //Instantiate(boss_obj, pos, Quaternion.identity);
     }
 
 
