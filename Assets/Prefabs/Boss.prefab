@@ -195,3 +195,4 @@ MonoBehaviour:
   wave_2_bombs: {fileID: 1037853435007398, guid: 28f85a069c7ddaf43b53ac444310945c,
     type: 2}
   boss_health: 40
+  boss_heath_txt: {fileID: 0}

@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private GameObject[] gameObjects;
     Vector3 pos;
+    float xFactor, yFactor;
     //</Private vars>
 
     //<Public vars>
@@ -33,18 +34,22 @@ public class PlayerController : MonoBehaviour {
     public Button btn_teleport;
     public float adder = 1;
     public bool isCreated = false;
-
+    private GameObject boss;
 //</Public vars>
 
 //</Vars>
     void Start () {
+        boss = GameObject.FindGameObjectWithTag("Boss");
         remakeText();
         btn = btn.GetComponent<Button>();
 		rb = GetComponent<Rigidbody>();
         btn.onClick.AddListener(onClick);
         btn_teleport = btn_teleport.GetComponent<Button>();
         btn_teleport.onClick.AddListener(TeleportPlayer);
-	}
+        print(boss);
+        xFactor = Screen.width;
+        yFactor = Screen.height;
+    }
 	
 	void Update () {
         float x = CrossPlatformInputManager.GetAxis("Horizontal") * speed*adder ;
@@ -145,11 +150,12 @@ public class PlayerController : MonoBehaviour {
         {
             StartCoroutine(loshara());
         }
-        if (health >=20f && isCreated == false)
+        if (health >=20f && isCreated == false && boss == null)
         {
             StartCoroutine(youNotLoshara());
             isCreated = true;
         }
+        
     }
 
     private IEnumerator loshara()
@@ -163,12 +169,20 @@ public class PlayerController : MonoBehaviour {
         losharaText.text = "Time to fight with boss, loshara!";
         yield return new WaitForSeconds(3);
         createBoss();
+        isCreated = true;
         losharaText.text = "";
     }
     void createBoss()
     {
-
-        SceneManager.LoadScene("BossScene");
+        if (yFactor == 1920 && xFactor == 1080 || yFactor == 1080 && xFactor == 1920)
+        {
+            SceneManager.LoadScene("BossScene");
+        }
+        else if (yFactor == 1280 && xFactor == 720 || yFactor == 720 && xFactor == 1280)
+        {
+            SceneManager.LoadScene("MainScene_720p");
+        }
+        
 
         //GameObject[] gameObjects_enemy = GameObject.FindGameObjectsWithTag("Enemy");
         //for(int i =0; i<gameObjects_enemy.Length; i++)

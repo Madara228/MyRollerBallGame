@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BossScene.unity
     guid: ae6d3ee061baee4429cef12745a7953d
+  - enabled: 1
+    path: Assets/Scenes/MainScene_720p.unity
+    guid: ce84766d12a92e243ba5166f83942877
   m_configObjects: {}

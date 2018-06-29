@@ -8,21 +8,28 @@ public class LoadScenes : MonoBehaviour {
 
     public Button newScene;
     public Button tutorial;
+    float xFactor, yFactor;
 
 
 	void Start () {
-        float xFactor = Screen.width;
-        float yFactor = Screen.height;
+        xFactor = Screen.width;
+        yFactor = Screen.height;
         Debug.Log(xFactor+" "+ yFactor);
         newScene = newScene.GetComponent<Button>();
-        tutorial = tutorial.GetComponent<Button>();
+       // tutorial = tutorial.GetComponent<Button>();
         newScene.onClick.AddListener(newScene_void);
 	}
 
 
-	void newScene_void()
+    void newScene_void()
     {
-        SceneManager.LoadScene("MainScene");
+        if (yFactor == 1920 && xFactor == 1080 || yFactor == 1080 && xFactor == 1920)
+        {
+            SceneManager.LoadScene("");
+        }
+        else if(yFactor == 1280 && xFactor == 720 || yFactor == 720 && xFactor == 1280)
+        {
+            SceneManager.LoadScene("BossScene");
+        }
     }
-    
 }
