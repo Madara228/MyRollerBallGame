@@ -171,6 +171,10 @@ public class PlayerController : MonoBehaviour {
         {
             SceneManager.LoadScene("MainScene_720p");
         }
+        else if (yFactor == 2960 && xFactor == 1440 || yFactor == 1440 && xFactor == 2960)
+        {
+            SceneManager.LoadScene("MainScene_2940");
+        }
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     private IEnumerator youNotLoshara()
@@ -191,6 +195,11 @@ public class PlayerController : MonoBehaviour {
         {
             SceneManager.LoadScene("BossScene");
         }
+        else if (yFactor == 2960 && xFactor == 1440 || yFactor == 1440 && xFactor == 2960)
+        {
+            SceneManager.LoadScene("BossScene_2960");
+        }
+
     }
 
 

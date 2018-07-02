@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BossScene_1080p.unity
     guid: a25a40222ac68f443ba5759d4c12c41f
+  - enabled: 1
+    path: Assets/Scenes/BossScene_2960.unity
+    guid: b803f4ebfea12d64e8dd854c765e3f73
+  - enabled: 1
+    path: Assets/Scenes/Main_scene_2940_1440.unity
+    guid: 142edce13ef16394dbc6959e173a6a05
   m_configObjects: {}
