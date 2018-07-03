@@ -163,19 +163,20 @@ public class PlayerController : MonoBehaviour {
         losharaText.text = "Лошара!";
         yield return new WaitForSeconds(5);
 
-        if (yFactor == 1920 && xFactor == 1080 || yFactor == 1080 && xFactor == 1920)
-        {
-            SceneManager.LoadScene("MainScene");
-        }
-        else if (yFactor == 1280 && xFactor == 720 || yFactor == 720 && xFactor == 1280)
-        {
-            SceneManager.LoadScene("MainScene_720p");
-        }
-        else if (yFactor == 2960 && xFactor == 1440 || yFactor == 1440 && xFactor == 2960)
-        {
-            SceneManager.LoadScene("MainScene_2940");
-        }
+        //if (yFactor == 1920 && xFactor == 1080 || yFactor == 1080 && xFactor == 1920)
+        //{
+        //    SceneManager.LoadScene("MainScene");
+        //}
+        //else if (yFactor == 1280 && xFactor == 720 || yFactor == 720 && xFactor == 1280)
+        //{
+        //    SceneManager.LoadScene("MainScene_720p");
+        //}
+        //else if (yFactor == 2960 && xFactor == 1440 || yFactor == 1440 && xFactor == 2960)
+        //{
+        //    SceneManager.LoadScene("MainScene_2940");
+        //}
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("MainScene");
     }
     private IEnumerator youNotLoshara()
     {
@@ -187,18 +188,19 @@ public class PlayerController : MonoBehaviour {
     }
     void createBoss()
     {
-        if (yFactor == 1920 && xFactor == 1080 || yFactor == 1080 && xFactor == 1920)
-        {
-            SceneManager.LoadScene("BossScene_1080p");
-        }
-        else if (yFactor == 1280 && xFactor == 720 || yFactor == 720 && xFactor == 1280)
-        {
-            SceneManager.LoadScene("BossScene");
-        }
-        else if (yFactor == 2960 && xFactor == 1440 || yFactor == 1440 && xFactor == 2960)
-        {
-            SceneManager.LoadScene("BossScene_2960");
-        }
+        //if (yFactor == 1920 && xFactor == 1080 || yFactor == 1080 && xFactor == 1920)
+        //{
+        //    SceneManager.LoadScene("BossScene_1080p");
+        //}
+        //else if (yFactor == 1280 && xFactor == 720 || yFactor == 720 && xFactor == 1280)
+        //{
+        //    SceneManager.LoadScene("BossScene");
+        //}
+        //else if (yFactor == 2960 && xFactor == 1440 || yFactor == 1440 && xFactor == 2960)
+        //{
+        //    SceneManager.LoadScene("BossScene_2960");
+        //}
+        SceneManager.LoadScene("BossScene");
 
     }
 

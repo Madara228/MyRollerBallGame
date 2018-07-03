@@ -23,17 +23,8 @@ public class LoadScenes : MonoBehaviour {
 
     void newScene_void()
     {
-        if (yFactor == 1920 && xFactor == 1080 || yFactor == 1080 && xFactor == 1920)
-        {
+        
             SceneManager.LoadScene("MainScene");
-        }
-        else if(yFactor == 1280 && xFactor == 720 || yFactor == 720 && xFactor == 1280)
-        {
-            SceneManager.LoadScene("MainScene_720p");
-        }
-        else if (yFactor == 2960 && xFactor == 1440 || yFactor == 1440 && xFactor == 2960)
-        {
-            SceneManager.LoadScene("MainScene_2940");
-        }
+        
     }
 }
