@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -35,6 +34,7 @@ public class PlayerController : MonoBehaviour {
     public float adder = 1;
     public bool isCreated = false;
     private GameObject boss;
+    public VirtualJoystick virtualJoystick;
 //</Public vars>
 
 //</Vars>
@@ -52,16 +52,14 @@ public class PlayerController : MonoBehaviour {
     }
 	
 	void Update () {
-        float x = CrossPlatformInputManager.GetAxis("Horizontal") * speed*adder ;
-        float y = CrossPlatformInputManager.GetAxis("Vertical") * speed*adder;
-       // rotation = x*1f*Time.deltaTime;
+        float x = virtualJoystick.Horizontal() * (speed*1.5f) * adder;
+        float y = virtualJoystick.Vertical() * (speed*1.5f) * adder;
         rb.AddForce(new Vector3(x, 0, y));
-        //transform.rotation = Quaternion.identity;
-        if(x!=0 && y != 0) 
+        if (x != 0 && y != 0)
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Atan2(x, y) * Mathf.Rad2Deg, transform.eulerAngles.z);
         }
-	}
+    }
 
     void FixedUpdate()
     {
