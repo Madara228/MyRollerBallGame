@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour {
         pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), size.y, Random.Range(-size.z / 2, size.z / 2));
         Instantiate(plane, pos, Quaternion.identity);
         DestrouPlanes();
-        
+         
         //for(int i=0; i < gameObjects.Length; i++)
         //{
         //    Destroy(gameObject[i])

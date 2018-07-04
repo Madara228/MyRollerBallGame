@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class BossScript : MonoBehaviour {
 
     public GameObject wave_1_mini_objs;
@@ -120,9 +121,16 @@ public class BossScript : MonoBehaviour {
     void RemakeBossHealth()
     {
         boss_heath_txt.text = boss_health.ToString();
+        if (boss_health <= 0)
+        {
+            StartCoroutine(restart());
+        }
     }
-    //private IEnumerator third_skill()
-    //{
-    //    yield return new WaitForSeconds(0.1f);
-    //}
+
+    private IEnumerator restart()
+    {
+        playerController.losharaText.text = "Good";
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("MainScene");
+    }
 }
