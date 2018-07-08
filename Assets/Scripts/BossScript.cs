@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -25,12 +24,10 @@ public class BossScript : MonoBehaviour {
         //wave_1();
       //  kickPlayer();
 	}
-	
 	void Update () {
         //kickPlayer();
 
     }
-
     void wave_1()
     {
         for(int i = 0; i < 10; i++)
@@ -39,14 +36,13 @@ public class BossScript : MonoBehaviour {
         }
         StartCoroutine(delete("wave_1_bomb"));
         //StartCoroutine(wave_2());
-
     }
 
 
 
     private IEnumerator wave_2()
     {
-        for (int i = 0; i < 60; i++)
+        for (int i = 0; i < 40; i++)
         {
             Vector3 pos = playerController.center + new Vector3(Random.Range(-playerController.size.x / 2, playerController.size.x / 2),
                 90, Random.Range(-playerController.size.z / 2, playerController.size.z / 2));
@@ -61,7 +57,7 @@ public class BossScript : MonoBehaviour {
 
     private IEnumerator delete(string a)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
         GameObject[] objs = GameObject.FindGameObjectsWithTag(a);
         for (int i = 0; i < objs.Length; i++)
         {
@@ -77,7 +73,7 @@ public class BossScript : MonoBehaviour {
         {
             yield return new WaitForSeconds(3f);
 
-            a = Random.Range(1, 4);
+            a = Random.Range(1, 3);
             if (a == 1)
             {
                 wave_1();
@@ -95,7 +91,7 @@ public class BossScript : MonoBehaviour {
         if(collision.gameObject.tag == "Player") {
             playerController.health -= 1;
             playerController.remakeText();
-            boss_health -= Random.Range(1,3);
+            boss_health -= Random.Range(1,4);
             Teleport();
             RemakeBossHealth();
         }

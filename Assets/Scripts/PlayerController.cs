@@ -16,39 +16,37 @@ public class PlayerController : MonoBehaviour {
     private GameObject[] gameObjects;
     Vector3 pos;
     float xFactor, yFactor;
+    private GameObject boss;
+
     //</Private vars>
 
     //<Public vars>
     public float health = 10f;
     public Text healthText;
-    public float speed = 20F;
+    public float speed = 70F;
     public CreatingHealers creatingHealers;
     public Vector3 center;
     public GameObject boss_obj;
     public Text losharaText;
     public Vector3 size;
-    public GameObject plane;
-    public Button btn;
     public bool canStopped = true;
     public Button btn_teleport;
     public float adder = 1;
     public bool isCreated = false;
-    private GameObject boss;
     public VirtualJoystick virtualJoystick;
+    public Button new_adder; 
 //</Public vars>
 
 //</Vars>
     void Start () {
         boss = GameObject.FindGameObjectWithTag("Boss");
         remakeText();
-        btn = btn.GetComponent<Button>();
 		rb = GetComponent<Rigidbody>();
-        btn.onClick.AddListener(onClick);
+        new_adder = new_adder.GetComponent<Button>();
         btn_teleport = btn_teleport.GetComponent<Button>();
+        new_adder.onClick.AddListener(addForcing);
         btn_teleport.onClick.AddListener(TeleportPlayer);
         print(boss);
-        xFactor = Screen.width;
-        yFactor = Screen.height;
     }
 	
 	void Update () {
@@ -80,21 +78,11 @@ public class PlayerController : MonoBehaviour {
             Destroy(gameObjects[i]);
         }
     }
-    void onClick()
-    {
-        pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), size.y, Random.Range(-size.z / 2, size.z / 2));
-        Instantiate(plane, pos, Quaternion.identity);
-        DestrouPlanes();
-         
-        //for(int i=0; i < gameObjects.Length; i++)
-        //{
-        //    Destroy(gameObject[i])
-        //}
-        //print(" ");
-    }
+
 
     void TeleportPlayer()
-    {
+   {
+        pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), size.y, Random.Range(-size.z / 2, size.z / 2));
         transform.position = pos;
     }
     private void OnCollisionEnter(Collision collision)
@@ -202,7 +190,10 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-
+    void addForcing()
+    {
+        rb.AddForce(transform.forward * speed * speed*adder*2);
+    }
     private IEnumerator korni()
     {
         float k = 0;
