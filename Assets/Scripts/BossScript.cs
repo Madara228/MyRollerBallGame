@@ -126,6 +126,6 @@ public class BossScript : MonoBehaviour {
         SceneManager.LoadScene("MainScene");
     }
     ///1212
-    
+    //1212
     
 }
