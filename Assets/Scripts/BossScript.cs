@@ -125,5 +125,7 @@ public class BossScript : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("MainScene");
     }
+    ///1212
+    
     
 }
