@@ -18,11 +18,7 @@ public class BossScript : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
         StartCoroutine(usingSkills());
-//        kickPlayer();
 
-        //StartCoroutine(usingSkills());
-        //wave_1();
-      //  kickPlayer();
 	}
 	void Update () {
         //kickPlayer();
@@ -129,4 +125,5 @@ public class BossScript : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("MainScene");
     }
+    
 }

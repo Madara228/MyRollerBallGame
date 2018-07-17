@@ -23,8 +23,8 @@ public class CreatingHealers : MonoBehaviour {
                 for (int i = 0; i < 2; i++)
                 {
                     int a = 0;
-                    a = Random.Range(1, 5);
-                    if(a == 4)
+                    a = Random.Range(1, 4);
+                    if(a == 3)
                     {
                         create(speedPref); 
                     }

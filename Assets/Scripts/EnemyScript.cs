@@ -25,7 +25,7 @@ public class EnemyScript : MonoBehaviour {
         //    canTeleport = false;
         //}
        // Debug.Log(canTeleport);
-        step = mSpeed * Time.deltaTime/3;
+        step = mSpeed * Time.deltaTime-3;
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
 	}
 

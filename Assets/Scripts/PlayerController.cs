@@ -50,9 +50,9 @@ public class PlayerController : MonoBehaviour {
     }
 	
 	void Update () {
-        float x = virtualJoystick.Horizontal() * (speed*1.5f) * adder;
-        float y = virtualJoystick.Vertical() * (speed*1.5f) * adder;
-        rb.AddForce(new Vector3(x, 0, y));
+        float x = virtualJoystick.Horizontal();
+        float y = virtualJoystick.Vertical();
+        rb.AddForce(new Vector3(x, 0, y) * (speed * 1.5f) * adder);
         if (x != 0 && y != 0)
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Atan2(x, y) * Mathf.Rad2Deg, transform.eulerAngles.z);
@@ -173,19 +173,7 @@ public class PlayerController : MonoBehaviour {
         losharaText.text = "";
     }
     void createBoss()
-    {
-        //if (yFactor == 1920 && xFactor == 1080 || yFactor == 1080 && xFactor == 1920)
-        //{
-        //    SceneManager.LoadScene("BossScene_1080p");
-        //}
-        //else if (yFactor == 1280 && xFactor == 720 || yFactor == 720 && xFactor == 1280)
-        //{
-        //    SceneManager.LoadScene("BossScene");
-        //}
-        //else if (yFactor == 2960 && xFactor == 1440 || yFactor == 1440 && xFactor == 2960)
-        //{
-        //    SceneManager.LoadScene("BossScene_2960");
-        //}
+    { 
         SceneManager.LoadScene("BossScene");
 
     }
